@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "小鹅日记",
   "short_name": "小鹅日记",
   "description": "记录生活的每一刻",
@@ -8,15 +8,14 @@
   "theme_color": "#4F6D7A",
   "icons": [
     {
-      "src": "android-chrome-192x192.png",
+      "src": "icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "android-chrome-512x512.png",
+      "src": "icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ]
-
 }
