@@ -1,0 +1,632 @@
+﻿@layer utilities {
+    .content-auto {
+        content-visibility: auto;
+    }
+    .text-shadow {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .paper-texture {
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 41.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d9ae94' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    .diary-card-hover {
+        transition: all 0.3s ease;
+    }
+    .diary-card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .page-turn {
+        animation: pageTurn 0.5s ease-in-out forwards;
+    }
+    @keyframes pageTurn {
+        0% {
+            transform: scale(0.95) translateY(20px);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+    .fade-in {
+        animation: fadeIn 0.5s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .fade-out {
+        animation: fadeOut 0.3s ease-in-out forwards;
+    }
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+    .pulse {
+        animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    .loader-rotate {
+        animation: rotate 2s linear infinite;
+    }
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .loader-path {
+        animation: dash 1.5s ease-in-out infinite;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+    }
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+        }
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+        }
+    }
+    .slide-up {
+        animation: slideUp 0.3s ease-out forwards;
+    }
+    @keyframes slideUp {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    .slide-down {
+        animation: slideDown 0.3s ease-in forwards;
+    }
+    @keyframes slideDown {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+    }
+    
+    /* 导航栏按钮样式 - 拉近距离 */
+    .nav-button {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        min-height: 40px;
+        margin: 0 0.15rem; /* 拉近按钮间距 */
+    }
+    
+    .nav-button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .nav-button i {
+        font-size: 1.25rem;
+    }
+    
+    /* 主界面按钮样式 */
+    .main-button {
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .main-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* 窗口样式 */
+    .window-container {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        animation: windowAppear 0.3s ease-out forwards;
+        touch-action: none; /* 防止触摸滚动干扰 */
+    }
+    
+    @keyframes windowAppear {
+        from {
+            transform: scale(0.95) translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    .window-title-bar {
+        user-select: none;
+        cursor: move;
+        touch-action: none; /* 防止触摸滚动 */
+    }
+    
+    .window-content {
+        min-height: 200px;
+    }
+    
+    /* 窗口滚动条美化 */
+    .window-content::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .window-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+    
+    .window-content::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+    }
+    
+    .window-content::-webkit-scrollbar-thumb:hover {
+        background: #a1a1a1;
+    }
+    
+    /* 窗口调整大小手柄 */
+    .window-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 12px;
+        height: 12px;
+        cursor: se-resize;
+        background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.1) 50%);
+        border-radius: 0 0 4px 0;
+        touch-action: none; /* 防止触摸滚动 */
+    }
+    
+    /* 触摸调整大小手柄 */
+    .touch-resize-handle {
+        width: 32px;
+        height: 32px;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 4px 0 4px 0;
+        touch-action: none;
+    }
+    
+    .touch-resize-handle:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+    
+    /* 触摸滚动支持 */
+    .touch-pan-y {
+        -webkit-overflow-scrolling: touch; /* 平滑滚动 */
+        overflow-y: auto;
+    }
+    
+    /* 移动端优化 */
+    @media (max-width: 640px) {
+        .nav-button span {
+            display: none;
+        }
+        
+        .nav-button {
+            padding: 0.4rem;
+            min-width: 36px;
+            min-height: 36px;
+            margin: 0 0.1rem; /* 移动端更小的间距 */
+        }
+        
+        .nav-button i {
+            font-size: 1.1rem;
+        }
+        
+        /* 主界面按钮移动端优化 */
+        .main-button span {
+            font-size: 0.875rem;
+        }
+        
+        .main-button {
+            padding: 0.6rem 1rem;
+        }
+        
+        .window-container {
+            width: 95% !important;
+            height: 80% !important;
+            left: 2.5% !important;
+            top: 10% !important;
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+        
+        /* 移动端触摸优化 */
+        .window-title-bar {
+            padding: 12px 16px;
+            min-height: 48px; /* 更大的触摸区域 */
+        }
+        
+        .touch-resize-handle {
+            width: 40px;
+            height: 40px; /* 更大的调整大小手柄 */
+        }
+        
+        /* 移动端按钮优化 */
+        button, .nav-button, .diary-action, .main-button {
+            min-height: 44px; /* Apple推荐的触摸目标大小 */
+            min-width: 44px;
+        }
+        
+        /* 移动端输入优化 */
+        input, textarea, select {
+            font-size: 16px; /* 防止iOS缩放 */
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .window-container {
+            width: 90% !important;
+            max-width: 500px;
+        }
+    }
+    
+    /* 防止长按弹出菜单 */
+    .window-container, .window-title-bar, .touch-resize-handle {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* 触摸反馈效果 */
+    .nav-button:active, button:active, .diary-action:active, .main-button:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    
+    /* 底部栏样式 */
+    .bottom-footer {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #4F6D7A;
+        z-index: 20; /* 低于窗口的z-index */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* 加载更多按钮样式 */
+    .load-more-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        grid-column: 1 / -1; /* 横跨所有列 */
+    }
+    
+    .load-more-btn {
+        padding: 0.75rem 2rem;
+        background-color: rgba(79, 109, 122, 0.1);
+        color: #4F6D7A;
+        border-radius: 0.75rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(79, 109, 122, 0.2);
+        cursor: pointer;
+        min-height: 44px; /* 触摸友好 */
+        min-width: 150px;
+    }
+    
+    .load-more-btn:hover {
+        background-color: rgba(79, 109, 122, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .load-more-btn:active {
+        transform: translateY(0);
+    }
+    
+    /* 日记卡片容器优化 */
+    #diaries-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        position: relative;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 640px) {
+        #diaries-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .load-more-btn {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+    
+    /* 深色主题支持 */
+    .dark-theme {
+        background-color: #1a202c;
+        color: #e2e8f0;
+    }
+    
+    .dark-theme .bg-light {
+        background-color: #2d3748;
+    }
+    
+    .dark-theme .bg-white {
+        background-color: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .dark-theme .text-dark {
+        color: #e2e8f0;
+    }
+    
+    .dark-theme .text-gray-600 {
+        color: #a0aec0;
+    }
+    
+    .dark-theme .border-gray-300 {
+        border-color: #4a5568;
+    }
+    
+    .dark-theme .bg-gray-50 {
+        background-color: #4a5568;
+    }
+    
+    /* 系统字体回退 */
+    @font-face {
+        font-family: 'SystemDefault';
+        src: local('Arial'), local('Helvetica'), local('sans-serif');
+    }
+    
+    /* 基础字体设置 */
+    body {
+        font-family: 'Inter', 'SystemDefault', sans-serif;
+    }
+    
+    /* 窗口容器 */
+    #windows-container {
+        z-index: 30;
+    }
+    
+    /* 线束文本 */
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* 触摸设备优化 */
+    @media (hover: none) and (pointer: coarse) {
+        /* 触摸设备特定样式 */
+        .diary-card-hover:hover {
+            transform: none; /* 触摸设备取消悬停效果 */
+        }
+        
+        .nav-button:hover {
+            background-color: transparent;
+            transform: none;
+        }
+        
+        .main-button:hover {
+            transform: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .window-title-bar:hover {
+            background-color: inherit;
+        }
+        
+        /* 增加触摸目标大小 */
+        .window-close-btn, .window-minimize-btn {
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 表单元素优化 */
+        input, textarea, select, button {
+            font-size: 16px; /* 防止iOS自动缩放 */
+        }
+    }
+    
+    /* 高对比度模式支持 */
+    @media (prefers-contrast: high) {
+        .window-container {
+            border: 2px solid #000;
+        }
+        
+        .window-title-bar {
+            background-color: #2c5282;
+        }
+        
+        button {
+            border: 2px solid currentColor;
+        }
+    }
+    
+    /* 减少运动偏好 */
+    @media (prefers-reduced-motion: reduce) {
+        .page-turn, .fade-in, .fade-out, .slide-up, .slide-down, 
+        .diary-card-hover, .nav-button, .main-button, .pulse, .loader-rotate,
+        .loader-path, .window-container {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+    
+    /* 圆形图片样式 */
+    .rounded-image {
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+}
+/* PWA 相关样式 */
+#pwa-install-btn, #notification-permission-btn {
+    animation: gentlePulse 2s infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* 安装提示样式 */
+.install-tip {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: linear-gradient(135deg, #4F6D7A, #3A5461);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 250px;
+    animation: slideInRight 0.5s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.install-tip:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #4F6D7A;
+}
+
+/* 离线状态指示器 */
+#network-status {
+    animation: statusPulse 1s ease;
+}
+
+@keyframes statusPulse {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* PWA 相关按钮触摸优化 */
+#pwa-install-btn, #notification-permission-btn {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* 应用已安装样式 */
+.app-installed .nav-button[data-action="install"] {
+    display: none;
+}
+
+/* 打印样式优化 */
+@media print {
+    .window-container, .bottom-footer, .nav-button, #diary-list .filter-section {
+        display: none !important;
+    }
+    
+    #diaries-container {
+        display: block;
+    }
+    
+    .diary-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+
+/* 深色主题PWA优化 */
+.dark-theme .install-tip {
+    background: linear-gradient(135deg, #2d3748, #4a5568);
+}
+
+.dark-theme .install-tip:after {
+    border-top-color: #2d3748;
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .install-tip {
+        border: 2px solid white;
+    }
+    
+    #network-status {
+        border: 2px solid currentColor;
+    }
+}
+
+/* 减少运动偏好 */
+@media (prefers-reduced-motion: reduce) {
+    #pwa-install-btn, #notification-permission-btn,
+    .install-tip, #network-status {
+        animation: none !important;
+    }
+}

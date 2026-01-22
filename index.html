@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>小鹅日记 | 记录生活的每一刻</title>
+    
+    <!-- 网站图标 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- 使用特定版本的 Tailwind CSS 避免警告 -->
+    <script src="https://cdn.tailwindcss.com/3.3.5"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 字体 -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      body { 
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css">
+	<!-- PWA 相关配置 -->
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="小鹅日记">
+<link rel="apple-touch-icon" href="icons/icon-192x192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-TileColor" content="#4F6D7A">
+<meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+<meta name="msapplication-config" content="browserconfig.xml">
+<meta name="theme-color" content="#4F6D7A">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F6D7A',
+                        secondary: '#D9AE94',
+                        accent: '#E07A5F',
+                        light: '#F8F4E3',
+                        dark: '#353535',
+                        goose: '#a8d1e7',
+                        gooseBeak: '#FFB830',
+                        gooseBody: '#E6F4F1',
+                        gooseWing: '#B5D9D0',
+                        admin: '#8B5CF6',
+                        donate: '#FF6B6B'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-light paper-texture min-h-screen text-dark">
+    <!-- 加载动画-->
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-light" style="z-index: 9999;">
+        <div class="mb-6">
+            <h1 class="text-5xl font-bold text-primary pulse">GOOSE</h1>
+        </div>
+        <p class="text-primary font-medium text-lg">加载中...</p>
+    </div>
+
+    <!-- 主应用容器 -->
+    <div id="app" class="hidden flex flex-col min-h-screen">
+        <!-- 顶部导航栏-->
+        <header class="sticky top-0 z-40 bg-primary/95 text-white shadow-md backdrop-blur-sm">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fa fa-book text-2xl text-secondary"></i>
+                    <h1 class="text-xl md:text-2xl font-semibold">小鹅日记</h1>
+                    <span id="admin-badge" class="hidden bg-admin text-white text-xs px-2 py-0.5 rounded-full">管理员</span>
+                </div>
+                
+                <div class="flex items-center space-x-1">
+                    <div class="hidden md:block text-white/90 mr-2">
+                        <span id="time-greeting"></span>，<span id="current-username" class="font-medium text-secondary"></span>
+                    </div>
+                    
+                    <!-- 写日记按钮 -->
+                    <button id="add-diary-btn" class="bg-secondary hover:bg-secondary/90 text-dark px-3 py-2 rounded-lg flex items-center space-x-1 transition-all duration-300 transform hover:scale-105 shadow-md nav-button">
+                        <i class="fa fa-pencil"></i>
+                        <span class="hidden md:inline text-sm">写日记</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <main class="container mx-auto px-4 py-8 flex-grow">
+            <!-- 功能按钮区域-->
+            <section class="mb-6 flex justify-center">
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <!-- 小鹅助手按钮 -->
+                    <button id="nav-goose-btn" class="nav-button bg-goose text-primary hover:bg-goose/80 px-4 py-3 rounded-lg flex items-center space-x-2 transition-all duration-300 transform hover:scale-105 shadow-md" title="小鹅助手">
+                        <img src="gooseai.png" alt="小鹅助手" class="w-6 h-6 rounded-full object-cover">
+                        <span class="font-medium text-sm">小鹅助手</span>
+                    </button>
+                    
+                    <!-- 设置按钮 -->
+                    <button id="settings-btn" class="nav-button bg-white/80 text-primary hover:bg-white px-4 py-3 rounded-lg flex items-center space-x-2 transition-all duration-300 transform hover:scale-105 shadow-md border border-gray-200" title="设置">
+                        <i class="fa fa-cog"></i>
+                        <span class="font-medium text-sm">设置</span>
+                    </button>
+                    
+                    <!-- 管理员按钮 -->
+                    <button id="admin-btn" class="nav-button bg-admin/10 text-admin hover:bg-admin/20 px-4 py-3 rounded-lg flex items-center space-x-2 transition-all duration-300 transform hover:scale-105 shadow-md border border-admin/30 hidden" title="管理员面板">
+                        <i class="fa fa-shield"></i>
+                        <span class="font-medium text-sm">管理员</span>
+                    </button>
+                    
+                    <!-- 登出按钮 -->
+                    <button id="logout-btn" class="nav-button bg-accent/10 text-accent hover:bg-accent/20 px-4 py-3 rounded-lg flex items-center space-x-2 transition-all duration-300 transform hover:scale-105 shadow-md border border-accent/30" title="退出">
+                        <i class="fa fa-sign-out"></i>
+                        <span class="font-medium text-sm">退出</span>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- 欢迎消息和统计 -->
+            <section class="mb-10 text-center fade-in">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-primary mb-4">记录美好生活</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto mb-6">写个日记，记录一下</p>
+                <div class="flex flex-wrap justify-center gap-6 text-center">
+                    <div class="bg-white/80 p-4 rounded-lg shadow-sm flex-1 max-w-xs">
+                        <p class="text-gray-500 mb-1">总日记数</p>
+                        <p id="total-diary-count" class="text-3xl font-bold text-primary">0</p>
+                    </div>
+                    <div class="bg-white/80 p-4 rounded-lg shadow-sm flex-1 max-w-xs">
+                        <p class="text-gray-500 mb-1">本月新增</p>
+                        <p id="monthly-diary-count" class="text-3xl font-bold text-accent">0</p>
+                    </div>
+                    <div class="bg-white/80 p-4 rounded-lg shadow-sm flex-1 max-w-xs">
+                        <p class="text-gray-500 mb-1">连续记录</p>
+                        <p id="streak-count" class="text-3xl font-bold text-green-500">0</p>
+                        <p class="text-xs text-gray-500">天</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 日记列表 -->
+            <section id="diary-list" class="mb-16">
+                <h3 class="text-xl font-semibold mb-6 flex items-center">
+                    <i class="fa fa-history text-secondary mr-2"></i>
+                    我的日记
+                </h3>
+                
+                <!-- 日记过滤 -->
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <div class="relative flex-1 min-w-[200px]">
+                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input 
+                            type="text" 
+                            id="search-diary" 
+                            placeholder="搜索日记内容..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                        >
+                    </div>
+                    <select id="filter-month" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                        <option value="all">所有月份</option>
+                        <!-- 动态填充月份选项 -->
+                    </select>
+                    <select id="filter-mood" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                        <option value="all">所有心情</option>
+                        <option value="开心">开心</option>
+                        <option value="难过">难过</option>
+                        <option value="平静">平静</option>
+                        <option value="紧张">紧张</option>
+                        <option value="兴奋">兴奋</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                
+                <!-- 日记列表容器 -->
+                <div id="diaries-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 日记卡片将通过JS动态生成 -->
+                    <div class="col-span-full text-center py-12 text-gray-500">
+                        <i class="fa fa-book-open text-5xl mb-4 opacity-30"></i>
+                        <p>还没有写日记哦</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 固定底部栏 -->
+        <footer class="sticky bottom-0 left-0 right-0 bg-primary text-white py-3 z-20 shadow-lg mt-auto bottom-footer">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm">© 小鹅日记 | Goose旗下日记本</p>
+                <p class="text-xs mt-1 text-white/70">您的日记数据保存在浏览器里，不要卸载浏览器</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
